@@ -7,6 +7,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(readr)
+library(tidyverse)
+diary <- read_csv(file= "Raw-Data/dcpc_2017_indlevel-csv.csv")
+```
+
+```{data cleaning}
+#Since my data was a survey carried out by the Federal Reserve tha data set is very well organized. I spent most of my time reading through the codebook on the Fed's website which gave a detailed description of each of the many variables - so I could then select the ones I was most interested in exploring. I also did some work analyzing whether it is better to use the individual level data or transaction level data for the purposes of my final project and the questions I want to answer.
+cash <- diary %>%
+  select(paypref_lt10, paypref_100plus, paypref_10to25, paypref_25to50, paypref_50to100, age, race_white, race_black, race_asian, income_hh) %>%
+  filter(paypref_100plus == 1, paypref_lt10 == 1)
 ```
 
 ##About Section
